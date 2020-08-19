@@ -30,19 +30,10 @@ func (linkedList *LinkedList)AddToHead(property int){
 
 func (linkedList *LinkedList)IterateList(){
 	var node *Node
-	node = linkedList.headNode
-
-	for {
-		//print the value
+	
+	for node= linkedList.headNode; node != nil; node = node.nextNode{
 		fmt.Println(node.property)
-		
-		if node.nextNode == nil {
-			break
-		}else{
-			node = node.nextNode
-		}
-	}
-
+	}  
 }
 
 func main() {
