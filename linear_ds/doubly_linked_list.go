@@ -45,10 +45,13 @@ func (linkedList *LinkedList) LastNode() *Node {
 func (linkedList *LinkedList) NodeBetweenValues(firstProperty int,secondProperty int) *Node{
 	var betweenNode *Node
 	var node *Node
-	for node= linkedList.headNode; node.nextNode != nil; node= node.nextNode{
-		if (node.previousNode != nil && node.previousNode.property == firstProperty && node.nextNode.property == secondProperty){
-			betweenNode= node
-		}
+	for node= linkedList.headNode; node != nil; node= node.nextNode{
+		if(node.nextNode != nil && node.previousNode != nil){
+			if(node.previousNode.property == firstProperty && node.nextNode.property == secondProperty){
+				betweenNode= node
+			}
+		}	
+
 	}
 
 	return betweenNode
