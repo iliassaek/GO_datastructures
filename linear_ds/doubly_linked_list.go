@@ -42,9 +42,17 @@ func (linkedList *LinkedList) LastNode() *Node {
 	return lastNode
 }
 
-//func (linkedList *LinkedList) NodeBetweenValues(firstProperty int,secondProperty int) *Node{
-//	return
-//}
+func (linkedList *LinkedList) NodeBetweenValues(firstProperty int,secondProperty int) *Node{
+	var betweenNode *Node
+	var node *Node
+	for node= linkedList.headNode; node.nextNode != nil; node= node.nextNode{
+		if (node.previousNode != nil && node.previousNode.property == firstProperty && node.nextNode.property == secondProperty){
+			betweenNode= node
+		}
+	}
+
+	return betweenNode
+}
 
 func (linkedList *LinkedList) IterateList(){
 	var node *Node
@@ -78,12 +86,8 @@ func main(){
 	linkedList.AddToHead(3)
 	linkedList.AddToHead(6)
 	linkedList.AddToEnd(7)
-	// should print 6 3 5 7
-	linkedList.IterateList()
-
-	var nilLinkedList= &LinkedList{}
-	nilLinkedList.AddToEnd(1)
-	// should print 1
-	fmt.Println(nilLinkedList.headNode.property)
+	
+	// should print 5
+	fmt.Println(linkedList.NodeBetweenValues(3,7).property)
 }
 
