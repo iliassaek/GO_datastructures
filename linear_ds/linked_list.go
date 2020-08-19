@@ -36,13 +36,26 @@ func (linkedList *LinkedList)IterateList(){
 	}  
 }
 
+func (linkedList LinkedList) LastNode() *Node{
+	var node *Node
+	var lastNode *Node
+	
+	for node = linkedList.headNode; node != nil; node= node.nextNode{
+		if node.nextNode == nil {
+			lastNode= node
+		}
+	}
+	return lastNode
+}
+
 func main() {
 
 	var linkedList LinkedList
 	linkedList.AddToHead(1)
 	linkedList.AddToHead(2)
-
-	//should print 2 1
-	linkedList.IterateList()
+	linkedList.AddToHead(3)
+	//should print 1
+	fmt.Println(linkedList.LastNode().property)
+	
 }
 
