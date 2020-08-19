@@ -28,6 +28,19 @@ func (linkedList *LinkedList) AddToHead(property int){
 	linkedList.headNode= node	
 }
 
+func (linkedList *LinkedList) LastNode() *Node {
+	
+	var lastNode *Node
+	var node *Node
+
+	for node= linkedList.headNode; node != nil; node= node.nextNode{
+		if node.nextNode == nil{
+			lastNode= node
+		}		
+	}
+	
+	return lastNode
+}
 
 //func (linkedList *LinkedList) NodeBetweenValues(firstProperty int,secondProperty int) *Node{
 //	return
@@ -53,8 +66,7 @@ func main(){
 	linkedList.AddToHead(3)
 	linkedList.AddToHead(6)
 
-	// should print 6 3 5
-	linkedList.IterateList()
-
+	// should print 5
+	fmt.Println(linkedList.LastNode().property)
 }
 
