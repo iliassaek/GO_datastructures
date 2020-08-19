@@ -36,6 +36,8 @@ func (linkedList *LinkedList)IterateList(){
 	}  
 }
 
+
+// returns the last node of the linked list
 func (linkedList LinkedList) LastNode() *Node{
 	var node *Node
 	var lastNode *Node
@@ -48,6 +50,19 @@ func (linkedList LinkedList) LastNode() *Node{
 	return lastNode
 }
 
+//returns the node with the input value
+func (linkedList *LinkedList) NodeWithValue(property int) *Node{
+	var node *Node 
+	var nodeWithValue *Node
+	for node= linkedList.headNode; node != nil; node= node.nextNode{
+		if node.property == property {
+			nodeWithValue= node
+			break;
+		}
+	}
+	return nodeWithValue
+}
+
 func main() {
 
 	var linkedList LinkedList
@@ -55,7 +70,14 @@ func main() {
 	linkedList.AddToHead(2)
 	linkedList.AddToHead(3)
 	//should print 1
-	fmt.Println(linkedList.LastNode().property)
 	
+	var nodeWithValue *Node
+	nodeWithValue= linkedList.NodeWithValue(2)
+	if nodeWithValue == nil {
+		fmt.Println("not found")
+	}else{
+		//should return 2
+		fmt.Println(nodeWithValue.property)
+	}
 }
 
