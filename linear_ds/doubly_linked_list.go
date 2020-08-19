@@ -53,8 +53,20 @@ func (linkedList *LinkedList) IterateList(){
 	}
 }
 
-//func (linkedList LinkedList) AddToEnd(property int){
-//}
+func (linkedList *LinkedList) AddToEnd(property int){
+	var nodeToAdd = &Node{property: property}
+	var lastNode= linkedList.LastNode()
+
+	if lastNode != nil {
+		lastNode.nextNode= nodeToAdd
+		nodeToAdd.previousNode= lastNode
+	}else{
+		linkedList.headNode= nodeToAdd
+		fmt.Println("last Node nil")
+	}
+	
+}
+
 
 func main(){
 	fmt.Println("hi")
@@ -65,8 +77,13 @@ func main(){
 
 	linkedList.AddToHead(3)
 	linkedList.AddToHead(6)
+	linkedList.AddToEnd(7)
+	// should print 6 3 5 7
+	linkedList.IterateList()
 
-	// should print 5
-	fmt.Println(linkedList.LastNode().property)
+	var nilLinkedList= &LinkedList{}
+	nilLinkedList.AddToEnd(1)
+	// should print 1
+	fmt.Println(nilLinkedList.headNode.property)
 }
 
