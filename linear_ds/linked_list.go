@@ -63,21 +63,31 @@ func (linkedList *LinkedList) NodeWithValue(property int) *Node{
 	return nodeWithValue
 }
 
+//AddAfter method adds a node with nodeProperty after node with property
+
+func (linkedList *LinkedList) AddAfter(nodeProperty int,property int){
+	var nodeToAdd *Node
+	nodeToAdd = &Node{property: nodeProperty}
+	
+	var targetNode *Node
+	targetNode= linkedList.NodeWithValue(property)
+	
+	if targetNode != nil {
+		nodeToAdd.nextNode= targetNode.nextNode
+		targetNode.nextNode= nodeToAdd
+	}
+}
+
 func main() {
 
 	var linkedList LinkedList
 	linkedList.AddToHead(1)
 	linkedList.AddToHead(2)
 	linkedList.AddToHead(3)
-	//should print 1
-	
-	var nodeWithValue *Node
-	nodeWithValue= linkedList.NodeWithValue(2)
-	if nodeWithValue == nil {
-		fmt.Println("not found")
-	}else{
-		//should return 2
-		fmt.Println(nodeWithValue.property)
-	}
-}
 
+	linkedList.AddAfter(20,2)
+	linkedList.AddAfter(50,20)	
+
+	//should return 3 2 20 50 1
+	linkedList.IterateList()
+}
