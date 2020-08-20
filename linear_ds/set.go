@@ -18,11 +18,18 @@ func (set *Set) ContainsElement(element int) bool{
 	return exists
 }
 
+func (set *Set) AddElement(element int){
+	if(!set.ContainsElement(element)){
+		set.integerMap[element]= true
+	}
+}
+
+
 func main(){
 
 	var set = &Set{}
 	set.New()
-	set.integerMap[2]=true
+	set.AddElement(2)
 	
 	//should return true
 	fmt.Println(set.ContainsElement(2))
