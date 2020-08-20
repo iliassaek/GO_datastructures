@@ -25,6 +25,10 @@ func (set *Set) AddElement(element int){
 }
 
 
+func (set *Set) DeleteElement(element int){
+	delete(set.integerMap, element)
+}
+
 func main(){
 
 	var set = &Set{}
@@ -34,7 +38,8 @@ func main(){
 	//should return true
 	fmt.Println(set.ContainsElement(2))
 
-	//sould return false
-	fmt.Println(set.ContainsElement(1))
+	//should return false
+	set.DeleteElement(2)
+	fmt.Println(set.ContainsElement(2))
 
 }
